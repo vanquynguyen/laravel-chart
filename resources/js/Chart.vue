@@ -46,12 +46,27 @@
                     },
                     options: {
                         scales: {
-                            yAxes: [{
+                            xAxes: [{
+                                type: 'logarithmic',
                                 ticks: {
-                                    beginAtZero: true
+                                    min: 0,
+                                    max: 100,
+                                    callback: function (value, index, values) {
+                                        return Number(value.toString());
+                                    }
+                                },
+                                afterBuildTicks: function (chartObj) {
+                                    chartObj.ticks = [0,50,100];
                                 }
                             }]
-                        }
+                        },
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: true,
+                            boxWidth: 80,
+                            fontSize: 15,
+                            padding: 0
+                        },
                     },
                 });
             }
